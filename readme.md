@@ -1,9 +1,9 @@
 
-# Retail ![Build Status](http://devtools1.risevision.com:8080/job/Storage-Client-BranchPush/badge/icon)
+# Retail QR Code![Build Status](http://devtools1.risevision.com:8080/job/Storage-Client-BranchPush/badge/icon)
 
 ## Introduction
 
-The Retail QR Code The Retail QR Code Template was created to promote a product while offering a QR code to scan for a coupon takeaway. A preview of the template can be seen here: http://rise-vision.github.io/content-templates/retail-qrcode/retail-qrcode.html
+The Retail QR Code The Retail QR Code Template was created to promote a product while offering a QR code to scan for a coupon takeaway. A preview of the template can be seen here: http://rise-vision.github.io/content-retail-qrcode/retail-qrcode.html
 
 ##Steps to run the Retail QR Code Template:##
 
@@ -16,30 +16,43 @@ The Retail QR Code The Retail QR Code Template was created to promote a product 
 3. Host the entire “retail” folder directory in rise vision storage or your web hosting service.  
 ![alt tag](images/readme-step3.jpg)
 
-4. Copy the link to the retail-qrcode.html file where you have it hosted and insert the url into a schedule. (you can also add this link to the url gadget within a presentation)  
+4. Copy the link to the index.html file where you have it hosted and insert the url into a schedule. (you can also add this link to the url gadget within a presentation)  
 ![alt tag](images/readme-step4.jpg)
 
 
 ##Directions to Modify the Retail QR Code Template:##
 
 ####Changing the Animated Background Image
-Open retail-qrcode.html, locate the following code and modify the src url of the source tag to the path of your new background:
+The background image is loaded by using the Rise Storage Web Component.
+To change the image open index.html, locate the following code and modify the rise-storage tag to reflect your company id, folder and image name:
 
 ```
 <div id="background">
-	<img src="images/accessories-3840w-v4.jpg">
+	<rise-storage companyId="395c64e5-2930-460b-881e-009aabb157df" folder="content-retail-qrcode" fileName="retail-qrcode-bg.jpg"></rise-storage>
+  <img id="storage-image" src="" />
+  <script>
+    var storage = document.querySelector("rise-storage"),
+      image = document.querySelector("#storage-image");
+
+    storage.addEventListener("rise-storage-response", function(e) {
+      image.setAttribute("src", e.detail[0]);
+    });
+  </script>
 </div>
 ```
 
+For more information on how to utilze rise storage web component. Please visit this repo on github:
+https://github.com/Rise-Vision/web-component-rise-storage
+
 The style of the animation is done within css/style-main.css file. Look for the keyframes called ```@-webkit-keyframes "slidein"```.
- 
+
 ####Changing the Quote Text
-Open retail-qrcode.html, the quote content is nested within the div ```<div id="quote-container">``` Modify the text within the span tags to meet your needs. 
+Open index.html, the quote content is nested within the div ```<div id="quote-container">``` Modify the text within the span tags to meet your needs. 
 
 The style of the quote content is controlled within css/style-main.css. Look for the comment called ```Quote Content```.
 
 ####Changing the QR Code
-Open retail-qrcode.html, locate the following code and modify the src url of the source tag to the path of your qr code graphic.:
+Open index.html, locate the following code and modify the src url of the source tag to the path of your qr code graphic.:
 
 ```
 <img id="qrcode" src="images/qrcode.png">
