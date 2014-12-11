@@ -1,0 +1,159 @@
+html, body {
+	width:100%;
+	height:100%;
+	margin: 0px;
+	overflow: hidden;
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+}
+
+body {
+	font-family: 'BenchNine', sans-serif;	
+	color:white;
+	background-color:#6a6665;
+}
+
+/* Animated Background */
+#background {
+	overflow: hidden;
+	position: relative;
+	text-align: center;
+}
+
+#background img {
+	-webkit-animation-duration: 55s;
+    -webkit-animation-name: slidein;
+	-webkit-animation-iteration-count: infinite;
+	-webkit-animation-direction: alternate;
+	 /* Hey browser, use your GPU */
+   	-webkit-transform: translate3d(0, 0, 0);
+	height:100vh;
+}
+
+@-webkit-keyframes "slidein" {
+ 0% {
+   -webkit-transform:translate3d(-15vw, 0vw, 0vw);
+   transform:translate3d(-15vw, 0vw, 0vw);
+ }
+ 50% {
+   -webkit-transform: scale(1) translate3d(0vw, 0vw, 0vw);
+   transform:translate3d(0vw, 0vw, 0vw);
+ }
+ 75% {
+   -webkit-transform:translate3d(-15vw, 0vw, 0vw);
+   transform:translate3d(-15vw, 0vw, 0vw);
+ }
+}
+
+/* Offer Content */
+#offer-container {
+	position: absolute;
+	top: 23vh;
+    left: 0vw;
+    width: 100vw;
+	height: 50vw;
+	z-index: 1;
+	text-transform: uppercase;
+	text-align: center;
+}
+
+.offer-header {
+	font-size: 12vh;
+	font-weight: 700;
+}
+
+.offer-subtext {
+	font-size: 6vh;
+	line-height: .5vw;
+	font-weight:300;
+}
+
+/* Promo Content */
+#promo-container {
+	position: absolute;
+	top: 51vh;
+    left:0;
+    width: 100vw;
+	height: 50vh;
+	z-index: 1;
+	text-transform: uppercase;
+	text-align: center;
+}
+
+.promo-text {
+	font-size: 6vh;
+	font-weight: 300;
+	line-height: 3vh;
+}
+
+#promo-container img {
+	display:block;
+    margin:auto;
+	height:15vh;
+}
+
+/* Coupon Border */
+#coupon {
+	position: absolute;
+    top:20vh;
+	left:5vw;
+    width: 90vw;
+	height: 70vh;
+	background-color:rgba(0,0,0, .5);
+	outline: 8px dashed rgba(255,255,255, .5);
+    outline-offset: -18px;
+}
+
+/* Logo */
+#logo-container {
+	position: absolute;
+	top: 5vh;
+    left:0;
+    width: 100vw;
+	height: 20vh;
+}
+
+#logo-container img {
+	display:block;
+    margin:auto;
+	height:13vh;
+}
+
+#instructions-container {
+	position: absolute;
+	top: 78vh;
+    left: 0;
+    width: 100vw;
+	height: 10vw;
+	text-transform: uppercase;
+	text-align: center;
+}
+
+/* Instructions Content */
+.instructions-text {
+	font-size: 2.5vh;
+	line-height: 3vh;
+	font-weight: 300;
+	letter-spacing: .4vw;
+}
+
+/* Rise Link */
+#rise-link {
+	position:absolute;
+	 width:100vw;
+	 height:100vh;
+	 left:0;
+	 top:0;
+	z-index:4;
+}
+
+#rise {
+	position:absolute;
+	width:100vw;
+	height:100vh;
+	left:0;
+	top:0;
+	z-index:4;
+}
+
+

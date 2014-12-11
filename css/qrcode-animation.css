@@ -1,0 +1,81 @@
+/* Animation For QR Code */
+#qr-graphics {
+	position: absolute;
+	top: 52.5vh;
+    left: 72.5vw;
+    width: 20vw;
+	height: 20vw;
+	text-align: right;
+}
+
+#qrcode {
+	position: absolute;
+	height: 10vw;
+	top:5vw;
+	left:5vw;
+}
+
+#crosshairs {
+	position: absolute;
+	top:0;
+	left:0;
+	height: 20vw;
+	-webkit-animation-duration: 5s;
+    -webkit-animation-name: pulse;
+	-webkit-animation-iteration-count: infinite;
+	-webkit-animation-direction: alternate;
+	 /* Hey browser, use your GPU */
+   	-webkit-transform: translate3d(0, 0, 0);
+	-webkit-animation-timing-function: ease-in-out;
+	z-index: 2;
+	opacity: .3;
+}
+
+
+@-webkit-keyframes "pulse" {
+ 25% {
+   -webkit-transform: scale(1.1);
+   transform: scale(1.1);
+ }
+ 50% {
+   -webkit-transform: scale(1);
+   transform: scale(1);
+ }
+ 75% {
+   -webkit-transform: scale(1.1);
+   transform: scale(1.1);
+ }
+}
+
+#scanline {
+	width:20vw;
+	position: absolute;
+	top:0;
+	left:0;
+	-webkit-animation-duration: 10s;
+    -webkit-animation-name: scan;
+	-webkit-animation-iteration-count: infinite;
+	 /* Hey browser, use your GPU */
+	 -webkit-animation-timing-function: linear;
+	z-index: 2;
+}
+
+
+@-webkit-keyframes "scan" {
+0% {
+   -webkit-transform:translate3d(0vw, 0vw, 0vw);
+	 opacity: 0;
+ }
+ 10% {
+   -webkit-transform:translate3d(0vw, 8vw, 0vw);
+	 opacity: 1;
+ }
+ 20% {
+   -webkit-transform:translate3d(0vw, 15vw, 0vw);
+	 opacity: 0;
+ }
+100% {
+   -webkit-transform:translate3d(0vw, 0vw, 0vw);
+	 opacity: 0;
+ }
+}

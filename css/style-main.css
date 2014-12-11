@@ -1,0 +1,177 @@
+html, body {
+	width:100%;
+	height:100%;
+	margin: 0px;
+	overflow: hidden;
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+}
+
+body {
+	font-family: 'BenchNine', sans-serif;	
+	color:white;
+	background-color:#6a6665;
+	z-index: 99;
+}
+
+/* Animated Background */
+#background {
+	overflow: hidden;
+	position: relative;
+	text-align: center;
+}
+
+#background img {
+	-webkit-animation-duration: 205s;
+    -webkit-animation-name: slidein;
+	-webkit-animation-iteration-count: infinite;
+	-webkit-animation-direction: alternate;
+	 /* Hey browser, use your GPU */
+   	-webkit-transform: translate3d(0, 0, 0);
+	height:100vh;
+}
+
+@-webkit-keyframes "slidein" {
+ 0% {
+   -webkit-transform: scale(1.2) translate3d(-50vw, 0vw, 0vw);
+   transform: scale(1.2) translate3d(-50vw, 0vw, 0vw);
+ }
+ 50% {
+   -webkit-transform: scale(1) translate3d(0vw, 0vw, 0vw);
+   transform: scale(1) translate3d(0vw, 0vw, 0vw);
+ }
+ 75% {
+   -webkit-transform: scale(1.2) translate3d(-50vw, 0vw, 0vw);
+   transform: scale(1.2) translate3d(-50vw, 0vw, 0vw);
+ }
+}
+
+/* Quote Content */
+#quote-container {
+	position: absolute;
+	top: 5vh;
+    left: 12vw;
+    width: 80vw;
+	height: 30vw;
+	z-index: 1;
+	text-transform: uppercase;
+}
+
+.header-text {
+	font-size: 7.1vw;
+	font-weight: 700;
+	opacity: .5;
+	letter-spacing: .4vw;
+}
+
+.sub-text {
+	font-size: 3.2vw;
+	line-height: .3vw;
+	width:100%;
+	font-weight:300;
+	opacity: .5;
+	padding-top: -20px;
+	letter-spacing: .5vw;
+}
+
+.designer-text {
+	font-size: 2.5vw;
+	line-height: 3.5vw;
+	width:100%;
+	font-weight: 700;
+	opacity: .5;
+	letter-spacing: .4vw;
+	line-height: 5vw;
+}
+
+/* QR Code */
+#qr-container {
+	position: absolute;
+	top: 62vh;
+    left: 12vw;
+    width: 80vw;
+	height: 10vw;
+	text-transform: uppercase;
+}
+
+.qr-text {
+	position: absolute; 
+    bottom: 0;
+	font-size: 4.4vw;
+	bottom:0px;
+	line-height: 1;
+	width:100%;
+	font-weight: 300;
+	letter-spacing: .4vw;
+}
+
+.percent {
+	font-weight: 700;
+	font-size: 6vw;
+}
+
+#footer-container {
+	position: absolute;
+    margin-left: auto;
+    margin-right: auto;
+	bottom: 0px;
+    width: 100%;
+	height: 15vh;
+	z-index: 1;
+	background-color: rgba(0,0,0,0.3);
+}
+
+#footer-container img {
+	position:absolute;
+	padding: 6vh;
+	height:8vh;
+	right:2vw;
+	text-align: right;
+}
+
+/* Logo */
+#logo-container{
+	position:absolute;
+	width:20%;
+	height:10%;
+	right:5%;
+	top:89%;
+}
+
+#logo{
+}
+	
+/* Footer Icons */
+#github {
+	position:absolute;
+	 width:50vw;
+	 height:4vh;
+	 left:9vw;
+	 top:91vh;
+	 z-index:4;
+}
+
+#gitbtn {
+	color:white;
+	font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;	
+	text-decoration: none;
+	font-size:3.6vh;
+	opacity:.5;
+}
+
+#rise {
+	opacity:.5;
+	width:5vw;
+	height:4vh;
+	left:5vw;
+	top:91vh;
+	z-index:5;
+	margin-left:-1vw;
+	position:absolute;
+	z-index:5;
+}
+
+#risebtn {
+    width:auto; 
+    height:100%;   
+}
