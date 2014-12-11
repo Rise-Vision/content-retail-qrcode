@@ -1,0 +1,7 @@
+{
+  "content-retail-qrcode": "web-component-rise-storage#gh-pages",
+  "private": true,
+  "dependencies": {
+    "rise-storage": "Rise-Vision/web-component-rise-storage#master"
+  }
+}
