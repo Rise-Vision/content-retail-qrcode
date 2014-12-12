@@ -7,13 +7,13 @@ The Retail QR Code The Retail QR Code Template was created to promote a product 
 
 ##Steps to run the Retail QR Code Template:##
 
-1. Fork or download the entire content-templates repository.  
+1. Fork or download the entire content-retail-qrcode repository.  
 ![alt tag](images/readme-step1.jpg)
 
-2. Modify the files within the retail folder directory to fit your needs (see below on how to modify specific elements).  
+2. Modify the files within the content-retail-qrcode folder directory to fit your needs (see below on how to modify specific elements).  
 ![alt tag](images/readme-step2.jpg)
 
-3. Host the entire “retail” folder directory in rise vision storage or your web hosting service.  
+3. Host the entire “content-retail-qrcode” folder directory in rise vision storage or your web hosting service.  
 ![alt tag](images/readme-step3.jpg)
 
 4. Copy the link to the index.html file where you have it hosted and insert the url into a schedule. (you can also add this link to the url gadget within a presentation)  
@@ -41,7 +41,9 @@ To change the image open index.html, locate the following code and modify the ri
 </div>
 ```
 
-For more information on how to utilze rise storage web component. Please visit this repo on github:
+The components folder is an assortment of dependices needed for the rise storage web component to work.
+
+For more information on how to utilze rise storage web component. Please refer to the readme.md within the following repo:
 https://github.com/Rise-Vision/web-component-rise-storage
 
 The style of the animation is done within css/style-main.css file. Look for the keyframes called ```@-webkit-keyframes "slidein"```.
