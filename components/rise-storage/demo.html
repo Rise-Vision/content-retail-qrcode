@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+  <title>rise-storage Demo</title>
+
+  <script src="../../components/webcomponentsjs/webcomponents.js"></script>
+  <link rel="import" href="rise-storage.html">
+
+</head>
+<body unresolved>
+
+  <rise-storage companyId="2c6e1f58-75b3-4792-b213-8482476cfa2e" folder="Demo" fileName="balloon.jpeg"></rise-storage>
+  <img id="storage-image" src="" />
+
+  <script>
+    var storage = document.querySelector("rise-storage"),
+      image = document.querySelector("#storage-image");
+
+    storage.addEventListener("rise-storage-response", function(e) {
+      image.setAttribute("src", e.detail[0]);
+    });
+
+    window.addEventListener("polymer-ready", function() {
+      storage.go();
+    });
+  </script>
+
+</body>
+</html>

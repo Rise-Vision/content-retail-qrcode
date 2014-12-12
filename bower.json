@@ -1,7 +1,19 @@
 {
-  "content-retail-qrcode": "web-component-rise-storage#gh-pages",
-  "private": true,
+  "name": "content-retail-coupon",
+  "version": "0.0.0",
+  "homepage": "https://github.com/Rise-Vision/content-retail-coupon",
+  "authors": [
+    "Mathew Meiers <mlm@risedisplay.com>"
+  ],
+  "description": "template to show qr code for coupon",
+  "keywords": [
+    "qr",
+    "code",
+    "retail"
+  ],
+  "license": "MIT",
   "dependencies": {
-    "rise-storage": "Rise-Vision/web-component-rise-storage#0.1.1"
+    "rise-storage": "https://github.com/Rise-Vision/web-component-rise-storage.git#0.1.1",
+    "webcomponentsjs": "~0.5.2"
   }
 }

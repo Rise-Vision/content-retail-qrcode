@@ -1,0 +1,221 @@
+<link rel="import" href="../../components/polymer/polymer.html">
+<link rel="import" href="../../components/core-ajax/core-ajax.html">
+
+<polymer-element name="rise-storage" attributes="companyId folder fileName folderRefresh">
+  <template>
+    <core-ajax id="storage"
+      url="{{url}}"
+      handleAs="json"
+      on-core-response="{{handleStorageResponse}}"
+      on-core-error="{{handleStorageError}}">
+    </core-ajax>
+    <core-ajax id="ping"
+      url="http://localhost:9494/ping?callback=handlePingResponse"
+      handleAs="text"
+      on-core-response="{{handlePingResponse}}"
+      on-core-error="{{handlePingError}}">
+    </core-ajax>
+  </template>
+
+  <script>
+    /* global Polymer */
+    /*jshint newcap: false */
+    Polymer("rise-storage", {
+      /**
+       * Fired when a response is received.
+       *
+       * @event rise-storage-response
+       */
+
+      /**
+       * Fired when an error is received.
+       *
+       * @event rise-storage-error
+       */
+
+      /**
+       * The ID of the Company.
+       *
+       * @attribute companyId
+       * @type string
+       * @default ''
+       */
+      companyId: "",
+
+      /**
+       * The folder name.
+       *
+       * @attribute folder
+       * @type string
+       * @default ''
+       */
+      folder: "",
+
+      /**
+       * The file name within the folder.
+       *
+       * @attribute fileName
+       * @type string
+       * @default ''
+       */
+      fileName: "",
+
+      /**
+       * The number of seconds before the folder will be checked for changes.
+
+       *
+       * @attribute folderRefresh
+       * @type number
+       * @default 0 (no refresh)
+       */
+      folderRefresh: 0,
+
+      /**
+       * The URL target of the request.
+       *
+       * @property url
+       * @type string
+       * @default ''
+       */
+      url: "",
+
+       /**
+       * Whether or not Rise Cache is running.
+       *
+       * @property isCacheRunning
+       * @type boolean
+       * @default false
+       */
+      isCacheRunning: false,
+
+      ready: function() {
+        this.setUrl();
+      },
+
+      setUrl: function() {
+        var baseUrl = "https://www.googleapis.com/storage/v1/b/risemedialibrary-" + encodeURIComponent(this.companyId) + "/o",
+          delimiter = "?delimiter=" + encodeURIComponent("/"),
+          folder = "&prefix=" + encodeURIComponent(this.folder) + "/",
+          fileName = encodeURIComponent(this.fileName),
+          url = baseUrl;
+
+        if (this.companyId) {
+          if (this.folder) {
+            // Get a specific file in a specific folder.
+            if (this.fileName) {
+              url += delimiter + folder + fileName;
+            }
+            // Get all files in a specific folder.
+            else {
+              url += delimiter + folder;
+            }
+          }
+          // Get a specific file in a bucket.
+          else if (this.fileName) {
+            url += "/" + fileName;
+          }
+          // Get all files in a bucket.
+          else {
+            url += delimiter;
+          }
+
+          this.url = url;
+        }
+      },
+
+      startTimer: function() {
+        // Don't refresh individual files.
+        if (!this.fileName) {
+          this.folderRefresh = parseInt(this.folderRefresh, 10);
+
+          if (!isNaN(this.folderRefresh) && this.folderRefresh !== 0) {
+            this.folderRefresh = (this.folderRefresh < 15) ? 15 : this.folderRefresh;
+
+            this.job("refresh", function() {
+              this.$.ping.go();
+              this.startTimer();
+            }, this.folderRefresh * 60000);
+          }
+        }
+      },
+
+      companyIdChanged: function() {
+        this.setUrl();
+      },
+
+      folderChanged: function() {
+        this.setUrl();
+      },
+
+      fileNameChanged: function() {
+        this.setUrl();
+      },
+
+      handleStorageResponse: function(e, resp) {
+        var self = this,
+          urls = [];
+
+        // Send back array of URLs.
+        if (resp && resp.response && resp.response.items) {
+          resp.response.items.forEach(function(elem) {
+            // Check that this is not the folder itself.
+            if (elem.name && (elem.name.slice(-1) !== "/")) {
+              if (elem.mediaLink) {
+                if (self.isCacheRunning) {
+                  urls.push("http://localhost:9494/?url=" + escape(elem.mediaLink));
+                }
+                else {
+                  urls.push(elem.mediaLink);
+                }
+              }
+            }
+          });
+        }
+        else if (resp && resp.response && resp.response.mediaLink) {
+          if (this.isCacheRunning) {
+            urls.push("http://localhost:9494/?url=" + escape(resp.response.mediaLink));
+          }
+          else {
+            urls.push(resp.response.mediaLink);
+          }
+        }
+
+        this.startTimer();
+        this.fire("rise-storage-response", urls);
+      },
+
+      handleStorageError: function(e, resp) {
+        console.log("Storage Error: " + resp.xhr.status + " " + resp.xhr.statusText);
+
+        this.fire("rise-storage-error", resp);
+      },
+
+      handlePingResponse: function(e, resp) {
+        if (resp.response === "") {
+          this.isCacheRunning = false;
+        }
+        else {
+          this.isCacheRunning = true;
+        }
+
+        this.go();
+      },
+
+      handlePingError: function(e, resp) {
+        console.log("Ping Error: " + resp.xhr.status + " " + resp.xhr.statusText);
+
+        this.isCacheRunning = false;
+        this.go();
+      },
+
+      /**
+       * Performs an Ajax request to the specified URL.
+       *
+       * @method go
+       */
+      go: function() {
+        this.$.storage.go();
+      }
+    });
+  </script>
+</polymer-element>
