@@ -50,9 +50,11 @@
   <script>
     var storage = document.querySelector("rise-storage"),
       image = document.querySelector("#storage-image");
-
     storage.addEventListener("rise-storage-response", function(e) {
       image.setAttribute("src", e.detail[0]);
+    });
+    window.addEventListener("polymer-ready", function() {
+      storage.go();
     });
   </script>
 </div>
