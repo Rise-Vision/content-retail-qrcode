@@ -3,7 +3,7 @@
 
 ## Introduction
 
-The Retail QR Code The Retail QR Code Template was created to promote a product while offering a QR code to scan for a coupon takeaway. A preview of the template can be seen here: http://rise-vision.github.io/content-retail-qrcode/retail-qrcode.html
+The Retail QR Code The Retail QR Code Template was created to promote a product while offering a QR code to scan for a coupon takeaway. A preview of the template can be seen here: http://rise-vision.github.io/content-retail-qrcode/index.html
 
 ##Steps to run the Retail QR Code Template:##
 
